@@ -28,7 +28,7 @@
       numProib.push(nRa);
     }
   }
-  console.log(numProib);
+  console.log("i numeri 'bomba' sono " + numProib);
 
 
 // decretare se un valore sia presente oppure no in un array
