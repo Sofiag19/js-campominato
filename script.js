@@ -10,4 +10,36 @@
 
 // generare 16 numeri casuali ed univoci da 1 a 100
 
-// richiesta numero utente
+  var numProib = []; //dove andranno i miei numeri
+
+  // funzione per ottenere un numero random tra 1 e 100 compresi
+  function numRandom(min, max) {
+    min = Math.ceil(min);
+    max = Math.floor(max);
+    return Math.floor(Math.random() * (max - min + 1)) + min;
+  }
+
+  // aggiungere numeri tra quelli proibiti e controllare che già non esistino
+
+  for (var i = 0; i < 16; i++) {
+    var nRa = numRandom(1, 100); //produco un numero random
+    var trovato = inArray(nRa, numProib); //vedo se il random è già nell'array
+    if (trovato == false) {
+      numProib.push(nRa);
+    }
+  }
+  console.log(numProib);
+
+
+// decretare se un valore sia presente oppure no in un array
+function inArray (value, array) {
+  var trovato = false;
+  var i = 0;
+  while (trovato === false && i < array.lenght) {
+    if (array[i] == value) {
+      trovato = true;
+    }
+    i++;
+  }
+  return trovato;
+}
