@@ -35,7 +35,7 @@ function alreadyIn(value, array){
 
 // generare 16 numeri casuali ed univoci da 1 a 100
 var oneBomb;
-var isInBomb = true;
+var isIn = true;
 var i = 0;
 while (bombs.length < 16) {
   oneBomb = numRandom(1,100);
@@ -50,33 +50,40 @@ console.log(bombs);
 // se il numero è presente nella lista dei numeri generati, la partita termina,
 // altrimenti continua chiedendo all’utente un altro numero.
 // l’utente non può inserire due volte lo stesso numero, ma sempre numeri diversi.
+
 var score = [];
-var k = 0;
 var numUtente;
-var isInNum;
-var isBomb;
+var isInNum = true;
+var isBomb = false;
 var perso = false;
+var k = 0;
 while (k < 5 || isBomb === false) { // cambiare il k < 5 con 84 ma finchè non riesco a chiudere il ciclo nemmeno ci provo :)
   numUtente = parseInt(prompt("Inserisci un numero da 1 a 100"));
+
   isBomb = alreadyIn(numUtente, bombs);
-  // console.log(isBomb);
-  if (isBomb == false) {
+  if (isBomb === false) {
+    alert("hai perso");
     perso = true;
-  }
-  if (numUtente < 1 || numUtente > 100) {
-    alert("Un numero ok ma che vada da 1 a 100");
-  }
-  if (isNaN(numUtente)) {
-    alert("Abbiamo detto un numero!");
-  }
-  isInNum = alreadyIn(numUtente, score);
-  if (isInNum == false) {
-    alert("Non puoi inserire due numeri uguali");
+  } else if (numUtente < 1 || numUtente > 100 || isNaN(numUtente)){
+    if (numUtente < 1 || numUtente > 100) {
+      alert("Un numero ok ma che vada da 1 a 100");
+    } else if (isNaN(numUtente)) {
+      alert("Abbiamo detto un numero!");
+    } else {
+      isInNum = alreadyIn(numUtente, score);
+      if (isInNum == false) {
+        alert("Non puoi inserire due numeri uguali");
+      }
+    }
   } else {
     score.push(numUtente);
   }
+  // console.log(isBomb);
   k++;
 }
+console.log(isBomb);
+console.log(perso);
 
-
+// Al termine della partita il software deve comunicare il punteggio, cioè il numero di volte che l’utente ha inserito un numero consentito.
 console.log("il tuo punteggio è " + score.length);
+console.log(score);
