@@ -32,7 +32,6 @@ function alreadyIn(value, array){
   return ins;
 }
 
-
 // generare 16 numeri casuali ed univoci da 1 a 100
 var oneBomb;
 var isInBomb = true;
@@ -46,40 +45,36 @@ while (bombs.length < 16) {
 }
 console.log(bombs);
 
-// In seguito deve chiedere all’utente di inserire un numero da 1 a 100 alla volta,
-// se il numero è presente nella lista dei numeri generati, la partita termina,
-// altrimenti continua chiedendo all’utente un altro numero.
-// l’utente non può inserire due volte lo stesso numero, ma sempre numeri diversi.
-var score = [];
+// array scelte
+var choises = [];
+
+//elemento che crescerà nell'array choises
 var k = 0;
-var numUtente;
-var isInNum;
-var isBomb;
+
+// variabile di controllo per determinare l'uscita dal ciclo
 var perso = false;
-while (k < 5 || isBomb === false) { // cambiare il k < 5 con 84 ma finchè non riesco a chiudere il ciclo nemmeno ci provo :)
+
+// variabile scelta utente
+var numUtente;
+
+while (perso == false && k < 84) {
   numUtente = parseInt(prompt("Inserisci un numero da 1 a 100"));
-  isBomb = alreadyIn(numUtente, bombs);
-  console.log(numUtente, isBomb);
-  // console.log(isBomb);
-  if (isBomb == false) {
-    perso = true;
-    console.log("hai totalizzato " + (score.length - 1));
-  }
+  console.log("Hai inserito " + numUtente);
   if (numUtente < 1 || numUtente > 100) {
     alert("Un numero ok ma che vada da 1 a 100");
-  }
-  if (isNaN(numUtente)) {
+  } else if (isNaN(numUtente)) {
     alert("Abbiamo detto un numero!");
-  }
-  isInNum = alreadyIn(numUtente, score);
-  if (isInNum == false) {
+  } else if (choises.includes(numUtente) == true) {
     alert("Non puoi inserire due numeri uguali");
-  } else {
-    score.push(numUtente);
+  } else if (bombs.includes(numUtente) == true) {
+    perso = true;
+    alert("Hai perso");
+    console.log("Hai perso");
+  }else {
+    choises.push(numUtente);
   }
-
   k++;
 }
 
-
-console.log("il tuo punteggio è " + (score.length - 1));
+console.log(choises);
+console.log("Il tuo punteggio è " + choises.length);
