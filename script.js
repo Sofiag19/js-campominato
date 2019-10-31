@@ -11,6 +11,7 @@
 // creazione array bombe
 var bombs = [];
 
+// FUNZIONI
 // funzione per ottenere un numero random tra 1 e 100 compresi
 function numRandom(min, max) {
   min = Math.ceil(min);
@@ -61,7 +62,7 @@ while (perso == false && k < 84) {
   numUtente = parseInt(prompt("Inserisci un numero da 1 a 100"));
   console.log("Hai inserito " + numUtente);
   if (numUtente < 1 || numUtente > 100) {
-    alert("Un numero ok ma che vada da 1 a 100");
+    alert("Un numero ok, ma che vada da 1 a 100!");
   } else if (isNaN(numUtente)) {
     alert("Abbiamo detto un numero!");
   } else if (choises.includes(numUtente) == true) {
